@@ -1,3 +1,3 @@
 module.exports = chatModel = {
-  items: ["cristian, ricardo"]
+  items: [{nombre: "Cristian", mensaje: "Hola"}]
 };

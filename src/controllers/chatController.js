@@ -6,7 +6,7 @@ module.exports = {
     },
 
     chatPost: function(req, res) {
-      chatModel.items.push (req.body.nombre)
+      chatModel.items.push (req.body)
     
     },
 }

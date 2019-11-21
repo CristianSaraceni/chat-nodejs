@@ -4,16 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CristianSaraceni/chat-nodejs.git"
-  },
-  "author": "",
+  "author": "portillo-schleicher-aguirre-bottini-saraceni",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CristianSaraceni/chat-nodejs/issues"
-  },
-  "homepage": "https://github.com/CristianSaraceni/chat-nodejs#readme"
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
 }

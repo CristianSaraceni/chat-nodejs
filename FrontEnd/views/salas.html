@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="row">
-        <h1>Sala De Chat</h1>      
+        <h1 id="tituloSala">Chat de </h1>      
     </div>
     <div class="row">
         <div id="sala" class="col-8">
@@ -30,7 +30,7 @@
 
     <script>
             $(document).ready(function() { 
-              
+              $("#tituloSala").append(" " + sessionStorage.getItem("sala"));
             });
     </script>
 </body>

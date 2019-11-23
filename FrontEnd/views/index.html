@@ -58,9 +58,13 @@
 
         //option A
         $("#crearSala").click(function(e){
-            e.preventDefault();
+           // e.preventDefault();
             console.log($("#idNick").val())
             console.log($("#ingresarNombre").val())
+            
+            sessionStorage.setItem("nick", $("#idNick").val());
+            sessionStorage.setItem("sala", $("#ingresarNombre").val());
+
         });
       });
     </script>

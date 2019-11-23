@@ -7,9 +7,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // import routes
 
-const chatRoute = require("./src/routes/chatRoute");
+const usuarioRoute = require("./src/routes/usuarioRoute");
 
-app.use("/api", chatRoute);
+app.use("/api", usuarioRoute);
 
 //config ports
 var port = Number(process.env.PORT || 3001);

@@ -14,6 +14,9 @@ app.get('/', function(req, res){
     res.render("index.html");
 });
 
+app.get('/salas', function(req, res){  
+    res.render("salas.html");
+});
 
 var port = Number(process.env.PORT || 3000);
 

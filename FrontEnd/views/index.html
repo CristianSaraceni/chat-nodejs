@@ -55,16 +55,9 @@
     </div>
     <script>
       $(document).ready(function() { 
-
-        //option A
-        $("#crearSala").click(function(e){
-           // e.preventDefault();
-            console.log($("#idNick").val())
-            console.log($("#ingresarNombre").val())
-            
+        $("#crearSala").click(function(e){       
             sessionStorage.setItem("nick", $("#idNick").val());
             sessionStorage.setItem("sala", $("#ingresarNombre").val());
-
         });
       });
     </script>

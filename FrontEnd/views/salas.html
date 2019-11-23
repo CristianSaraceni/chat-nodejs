@@ -5,8 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/chat.css">
+
 </head>
 <body>
-    salas
+    <div class="row">
+        <h1>Sala De Chat</h1>      
+    </div>
+    <div class="row">
+        <div id="sala" class="col-8">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">           
+            <form action="/action_page.php">
+                <textarea name="message" rows="2" cols="60">The cat was playing in the garden.</textarea>
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+
+    <script>
+            $(document).ready(function() { 
+              
+            });
+    </script>
 </body>
 </html>

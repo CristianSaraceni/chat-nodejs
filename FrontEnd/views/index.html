@@ -17,7 +17,7 @@
 <body>
     <div class="row">
       <div class="col-12" align=center>
-        <form class="form-signin">
+        <form id="nick" class="form-signin">
           <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
           <h1 class="h3 mb-3 font-weight-normal">Identifiquese</h1>
           <label for="name" class="sr-only">Ingrese su Nick</label>
@@ -39,16 +39,16 @@
                 <option value="sala3">Sala3</option>
                 <option value="sala4">Sala4</option>
               </select>
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+              <button id="ingresarSala" class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
             </form>
       </div>
       <div class="col-6" align=center>
           <form class="form-signin" action="/salas">
               <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
               <h1 class="h3 mb-3 font-weight-normal">Crear salas</h1>
-              <label for="name" class="sr-only">Ingrese nombre de sala</label>
-              <input type="Name" id="nombreSala" class="form-control" placeholder="Ingrese nombre de sala" autofocus="">
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
+              <label id="idIngresarNombre" for="name" class="sr-only">Ingrese nombre de sala</label>
+              <input type="Name" id="ingresarNombre" class="form-control" placeholder="Ingrese nombre de sala" autofocus="">
+              <button id="crearSala" class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
           </form>
       </div>
       
@@ -57,9 +57,10 @@
       $(document).ready(function() { 
 
         //option A
-        $("#form").submit(function(e){
+        $("#crearSala").click(function(e){
             e.preventDefault();
-            console.log("Fsdfsd")
+            console.log($("#idNick").val())
+            console.log($("#ingresarNombre").val())
         });
       });
     </script>

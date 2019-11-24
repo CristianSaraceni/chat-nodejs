@@ -17,3 +17,7 @@ var port = Number(process.env.PORT || 3001);
 app.listen(port, function() {
   console.log("Running in port", port);
 });
+
+const salasRoute = require("./src/routes/salaRoute");
+
+app.use("/api", salasRoute);

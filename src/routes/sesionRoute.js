@@ -4,6 +4,8 @@ var api = express.Router();
 const sesionController = require("../controllers/sesionController");
 
 
-api.post("/sesiones", sesionController.sesionesCrear);
+api.post("/sesiones/iniciar", sesionController.sesionesCrear);
+api.post("/sesiones/cerrar", sesionController.sesionesCerrar);
+
 
 module.exports = api;

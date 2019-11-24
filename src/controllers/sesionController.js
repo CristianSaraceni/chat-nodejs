@@ -16,5 +16,19 @@ module.exports = {
       .catch(error => {
         res.send(error);
       });
+  },
+
+  sesionesCerrar: function(req, res) {
+    let sesion = sesionesModel.crearSesionesModelo(
+        req.body.nombre, req.body.nick
+    );
+    return sesionesRepository
+      .sesionesCerrar(sesion)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(error => {
+        res.send(error);
+      });
   }
 };

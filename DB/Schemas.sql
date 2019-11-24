@@ -22,7 +22,7 @@ create table Sesiones (
 );
 
 create table Mensajes (
-	idMensaje int,
+	idMensaje int auto_increment,
     texto varchar(300),
     fechaHora datetime,
     idSesion int,

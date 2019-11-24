@@ -4,4 +4,10 @@ module.exports = {
         nombre: nombre
       }
     },
+    crearSalasModelo: function(nombre, nick) {
+        return salaCrear = {
+          nombre: nombre,
+          nick: nick
+        }
+      }
   };

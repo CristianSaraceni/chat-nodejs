@@ -20,4 +20,17 @@ module.exports = {
       });
   },
   
+  salasCrear: function(req, res) {
+    let salaCrear = salaModel.crearSalasModelo(
+        req.body.nombre, req.body.nick
+    );
+    return salaRepository
+      .salaCrear(salaCrear)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(error => {
+        res.send(error);
+      });
+  }
 };

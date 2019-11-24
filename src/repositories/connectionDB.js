@@ -7,11 +7,6 @@ var connection = mysql.createPool({
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE
-    // host: 'localhost',
-    // port: 3306,
-    // user: 'root',
-    // password: '123456',
-    // database: 'chat'
   });
   
   module.exports = connection;

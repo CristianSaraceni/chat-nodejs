@@ -10,11 +10,15 @@ app.use(express.json());
 const usuarioRoute = require("./src/routes/usuarioRoute");
 const salasRoute = require("./src/routes/salaRoute");
 const sesionesRoute = require("./src/routes/sesionRoute");
+const mensajesRoute = require("./src/routes/mensajeRoutes");
+
 
 
 app.use("/api", usuarioRoute);
 app.use("/api", salasRoute);
 app.use("/api", sesionesRoute);
+app.use("/api", mensajesRoute);
+
 
 
 //config ports

@@ -14,8 +14,8 @@ create table Salas (
 
 create table Sesiones (
 	idSesion int auto_increment,
-    fechaHoraInicio date,
-    fechaHoraFin date,
+    fechaHoraInicio datetime,
+    fechaHoraFin datetime,
     nickUsuario varchar (50),
     nombreSala varchar (50),
 	primary key (idSesion)
@@ -25,7 +25,7 @@ create table Mensajes (
 	idMensaje int,
     texto varchar(300),
     fechaHora datetime,
-    idSesion integer,
+    idSesion int,
     primary key (idMensaje,idSesion)
 );
 

@@ -8,8 +8,14 @@ app.use(express.json());
 // import routes
 
 const usuarioRoute = require("./src/routes/usuarioRoute");
+const salasRoute = require("./src/routes/salaRoute");
+const sesionesRoute = require("./src/routes/sesionRoute");
+
 
 app.use("/api", usuarioRoute);
+app.use("/api", salasRoute);
+app.use("/api", sesionesRoute);
+
 
 //config ports
 var port = Number(process.env.PORT || 3001);
@@ -18,6 +24,3 @@ app.listen(port, function() {
   console.log("Running in port", port);
 });
 
-const salasRoute = require("./src/routes/salaRoute");
-
-app.use("/api", salasRoute);

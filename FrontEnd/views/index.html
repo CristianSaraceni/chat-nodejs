@@ -33,11 +33,8 @@
           <form class="form-signin" action="/salas">
               <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
               <h1 class="h3 mb-3 font-weight-normal">Salas creadas</h1>
-              <select>
-                <option value="sala1" selected>Sala1</option>
-                <option value="sala2">Sala2</option>
-                <option value="sala3">Sala3</option>
-                <option value="sala4">Sala4</option>
+              <select id="salasSelect">
+                
               </select>
               <button id="ingresarSala" class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
             </form>
@@ -60,8 +57,38 @@
             sessionStorage.setItem("sala", $("#ingresarNombre").val());
             crearUsuario()
         });
+
+        traerSalas().then((salas) => {
+          salas.forEach(element => {
+            $("#salasSelect").append('<option value=' + element.nombre + '>' + element.nombre + '</option>')
+          });
+         
+        });
       });
 
+      // traer los nombres de las salas creadas
+     function traerSalas(){
+      let url = 'http://localhost:3001/api/salas';
+
+      return new Promise((resolve, reject) => {
+      //find the user to the api users
+      fetch(url,{
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+        
+            console.log(responseJson)
+            resolve(responseJson);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+      });
+      }
       // enviar a la api los datos del usuario
     function  crearUsuario(){
     

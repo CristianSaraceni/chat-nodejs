@@ -5,5 +5,12 @@ module.exports = {
             nick: nick,
             nombreSala: nombreSala
         }
+      },
+
+      mensajesObtener: function(texto, fechaHora) {
+        return mensajesObtener = {
+            texto: texto,
+            fechaHora: fechaHora
+        }
       }
   };

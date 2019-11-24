@@ -18,4 +18,19 @@ module.exports = {
       });
   },
 
+  mensajesObtener: function(req, res) {
+    let mensajes = [];
+    return mensajesRepository
+      .mensajesObtener(req.body.nombreSala)
+      .then(data => {
+          data.forEach(element => {
+              mensajes.push(mensajesModel.mensajesObtener(element.texto, element.fechaHora))
+          });
+        res.send(mensajes);
+      })
+      .catch(error => {
+        res.send(error);
+      });
+  },
+
 };

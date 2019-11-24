@@ -64,6 +64,12 @@
           });
          
         });
+
+        $("#ingresarSala").click(function(e){   
+          //e.preventDefault();
+            sessionStorage.setItem("nick", $("#idNick").val());
+            sessionStorage.setItem("sala", $('#ingresarSala').val($("#salasSelect option:selected").text())[0].value);    
+        });
       });
 
       // traer los nombres de las salas creadas

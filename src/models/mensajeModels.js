@@ -7,10 +7,11 @@ module.exports = {
         }
       },
 
-      mensajesObtener: function(texto, fechaHora) {
+      mensajesObtener: function(texto, fechaHora, nick) {
         return mensajesObtener = {
             texto: texto,
-            fechaHora: fechaHora
+            fechaHora: fechaHora,
+            nick: nick
         }
       }
   };

@@ -20,11 +20,12 @@ module.exports = {
 
   mensajesObtener: function(req, res) {
     let mensajes = [];
+    let nombreSala = req.params.nombreSala.replace("+", " ");
     return mensajesRepository
-      .mensajesObtener(req.body.nombreSala)
+      .mensajesObtener(nombreSala)
       .then(data => {
           data.forEach(element => {
-              mensajes.push(mensajesModel.mensajesObtener(element.texto, element.fechaHora))
+              mensajes.push(mensajesModel.mensajesObtener(element.texto, element.fechaHora, element.nickUsuario))
           });
         res.send(mensajes);
       })

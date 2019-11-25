@@ -1,6 +1,6 @@
 var db = require("./connectionDB");
 
-const mensajesObtener = "select * from mensajes m inner join sesiones s where s.nombreSala = ";
+const mensajesObtener = "select * from mensajes m inner join sesiones s on m.idSesion = s.idSesion where s.nombreSala = ";
 const mensajesCrear = "CALL MensajesCrear";
 
 
@@ -25,7 +25,7 @@ var Mensajes = {
       mensajesObtener: nombreSala => {
         return new Promise((resolve, reject) => {
           db.query(
-            `${mensajesObtener}'${nombreSala}'`,
+            `${mensajesObtener}'${nombreSala}' order by m.idMensaje asc`,
             (err, res) => {
               if (err) {
                 reject(err);

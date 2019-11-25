@@ -41,9 +41,23 @@
                 });
 
                 $("#enviarSms").click(function(e){ 
-                    e.preventDefault();      
+                  //  e.preventDefault();      
                     crearMensajes();
+                    obtenerMensajes().then((mensajes) => {
+                mensajes.forEach(element => {
+                 $("#sala").append('<div>' + element.texto + '<p>' + element.fechaHora + '</p>' + '</div>')
+                 });
+         
                 });
+                });
+
+                obtenerMensajes().then((mensajes) => {
+                mensajes.forEach(element => {
+                 $("#sala").append('<div style="background-color: gray">' + '<p>' + element.nick + ' dice:</p>'  + '<p>' + element.texto + '</p>'  + '<p>' + element.fechaHora + '</p>' + '</div>')
+                 });
+         
+                });
+
             });
 
             // crear sesiones en la base de datos
@@ -79,6 +93,33 @@
       fetch(url,{
         method: 'POST',
         body: JSON.stringify({"texto": $("#sms").val(), "nick": sessionStorage.getItem("nick"), "nombreSala": sessionStorage.getItem("sala")}),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+      })
+    .then((response) => response.json())
+    .then((responseJson) => {
+     
+        console.log(responseJson)
+        resolve(responseJson);
+    })
+    .catch((error) => {
+        reject(error);
+    });
+  });
+  }
+
+  function obtenerMensajes(){
+        console.log(JSON.stringify({"nombreSala": sessionStorage.getItem("sala")}))
+        let nombreSala = sessionStorage.getItem("sala").replace(" ", "+");
+        console.log(nombreSala)
+        console.log(nombreSala.replace("+", " "))
+      let url = `http://localhost:3001/api/mensajes/obtener/${nombreSala}`;
+      console.log(url)
+      return new Promise((resolve, reject) => {
+      //find the user to the api users
+      fetch(url,{
+        method: 'GET',
         headers:{
             'Content-Type': 'application/json'
         }

@@ -33,3 +33,5 @@ begin
 	SET @idSesion = (SELECT s.idSesion from sesiones s where s.nickUsuario = nick and s.nombreSala = nombreSala and s.fechaHoraFin is null);
 	insert into mensajes(texto, fechaHora, idSesion) values(texto, now(), @idSesion);
 end//
+
+select * from mensajes m inner join sesiones s on m.idSesion = s.idSesion where s.nombreSala = "Sala 56" order by m.idMensaje asc;

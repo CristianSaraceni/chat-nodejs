@@ -6,7 +6,6 @@
 
     <title>Social Navigation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 
@@ -19,9 +18,11 @@
       <div class="col-12" align=center>
         <form id="nick" class="form-signin">
           <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-          <h1 class="h3 mb-3 font-weight-normal">Identifiquese</h1>
-          <label for="name" class="sr-only">Ingrese su Nick</label>
+          <h1 class="h3 mb-3 font-weight-normal">CrisChat</h1>
+          <label for="name">Ingrese su Nick</label>
           <input type="Name" id="idNick" class="form-control" placeholder="Ingrese su nick" required="" autofocus="">
+          <label for="foto" >Suba su imagen aqui</label>
+          <input type="file" id="foto" class="form-control" >
           
           
         </form>
@@ -50,172 +51,9 @@
       </div>
       
     </div>
-    <script>
-      $(document).ready(function() { 
-        $("#crearSala").click(function(e){ 
-          e.preventDefault()
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-            sessionStorage.setItem("nick", $("#idNick").val());
-            sessionStorage.setItem("sala", $("#ingresarNombre").val());
-            if($("#idNick").val() != "" && $("#ingresarNombre").val() != ""){
-              crearUsuario();
-            crearSalas();
-            crearSesionesCrearSala();
-            $(location).attr('href',"http://localhost:3000/salas");
-            } else{
-              alert("Faltan rellenar campos")
-            }
-           
-        });
-
-        traerSalas().then((salas) => {
-          salas.forEach(element => {
-            $("#salasSelect").append('<option value=' + element.nombre + '>' + element.nombre + '</option>')
-          });
-         
-        });
-
-        $("#ingresarSala").click(function(e){ 
-          e.preventDefault()  
-            sessionStorage.setItem("nick", $("#idNick").val());
-            sessionStorage.setItem("sala", $('#ingresarSala').val($("#salasSelect option:selected").text())[0].value);
-            if($("#idNick").val() != "" && $('#ingresarSala').val($("#salasSelect option:selected").text())[0].value != ""){
-              crearUsuario();    
-              crearSesionesIngresarSala();
-              $(location).attr('href',"http://localhost:3000/salas");
-            } else{
-              alert("Faltan rellenar campos")
-            }
-        });
-      });
- 
-      // enviar a la api los datos del usuario
-  function  crearUsuario(){
-    
-    let url = 'http://localhost:3001/api/usuarios';
-
-    return new Promise((resolve, reject) => {
-        //find the user to the api users
-        fetch(url,{
-            method: 'POST',
-            body: JSON.stringify({"pnick": $("#idNick").val()}),
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            console.log(responseJson)
-            resolve(responseJson);
-        })
-        .catch((error) => {
-            reject(error);
-        });
-    });
-    }
-     
-    // traer los nombres de las salas creadas
-     function traerSalas(){
-      let url = 'http://localhost:3001/api/salas';
-
-      return new Promise((resolve, reject) => {
-      //find the user to the api users
-      fetch(url,{
-        method: 'GET',
-        headers:{
-            'Content-Type': 'application/json'
-        }
-      })
-        .then((response) => response.json())
-        .then((responseJson) => {
-        
-            console.log(responseJson)
-            resolve(responseJson);
-        })
-        .catch((error) => {
-            reject(error);
-        });
-      });
-      }
-
-      // crear salas en la base de datos
-      function crearSalas(){
-        console.log(JSON.stringify({"nombre": $("#ingresarNombre").val(), "nick": $("#idNick").val()}))
-      let url = 'http://localhost:3001/api/salas';
-      return new Promise((resolve, reject) => {
-      //find the user to the api users
-      fetch(url,{
-        method: 'POST',
-        body: JSON.stringify({"nombre": $("#ingresarNombre").val(), "nick": $("#idNick").val()}),
-        headers:{
-            'Content-Type': 'application/json'
-        }
-      })
-    .then((response) => response.json())
-    .then((responseJson) => {
-     
-        console.log(responseJson)
-        resolve(responseJson);
-    })
-    .catch((error) => {
-        reject(error);
-    });
-  });
-  }
-
-    // crear sesiones en la base de datos
-    function crearSesionesCrearSala(){
-        console.log(JSON.stringify({"nombre": $("#ingresarNombre").val(), "nick": $("#idNick").val()}))
-      let url = 'http://localhost:3001/api/sesiones/iniciar';
-      return new Promise((resolve, reject) => {
-      //find the user to the api users
-      fetch(url,{
-        method: 'POST',
-        body: JSON.stringify({"nombre": $("#ingresarNombre").val(), "nick": $("#idNick").val()}),
-        headers:{
-            'Content-Type': 'application/json'
-        }
-      })
-    .then((response) => response.json())
-    .then((responseJson) => {
-     
-        console.log(responseJson)
-        resolve(responseJson);
-    })
-    .catch((error) => {
-        reject(error);
-    });
-  });
-  }
-
-   // crear sesiones en la base de datos
-   function crearSesionesIngresarSala(){
-        console.log(JSON.stringify({"nombre": $('#ingresarSala').val($("#salasSelect option:selected").text())[0].value, "nick": $("#idNick").val()}))
-      let url = 'http://localhost:3001/api/sesiones/iniciar';
-      return new Promise((resolve, reject) => {
-      //find the user to the api users
-      fetch(url,{
-        method: 'POST',
-        body: JSON.stringify({"nombre": $('#ingresarSala').val($("#salasSelect option:selected").text())[0].value, "nick": $("#idNick").val()}),
-        headers:{
-            'Content-Type': 'application/json'
-        }
-      })
-    .then((response) => response.json())
-    .then((responseJson) => {
-     
-        console.log(responseJson)
-        resolve(responseJson);
-    })
-    .catch((error) => {
-        reject(error);
-    });
-  });
-  }
-
-    
-    </script>
-
+    <script src="http://localhost:3000/index.js"></script>
 </body>
 </html>
 

@@ -30,7 +30,7 @@
     </div>
     <div class="row">
       <div class="col-6" align=center>
-          <form class="form-signin" action="/salas">
+          <form class="form-signin"  >
               <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
               <h1 class="h3 mb-3 font-weight-normal">Salas creadas</h1>
               <select id="salasSelect">
@@ -40,7 +40,7 @@
             </form>
       </div>
       <div class="col-6" align=center>
-          <form class="form-signin" action="/salas">
+          <form class="form-signin" >
               <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
               <h1 class="h3 mb-3 font-weight-normal">Crear salas</h1>
               <label id="idIngresarNombre" for="name" class="sr-only">Ingrese nombre de sala</label>
@@ -52,13 +52,20 @@
     </div>
     <script>
       $(document).ready(function() { 
-        $("#crearSala").click(function(e){       
-        //  e.preventDefault()
+        $("#crearSala").click(function(e){ 
+          e.preventDefault()
+
             sessionStorage.setItem("nick", $("#idNick").val());
             sessionStorage.setItem("sala", $("#ingresarNombre").val());
-            crearUsuario();
+            if($("#idNick").val() != "" && $("#ingresarNombre").val() != ""){
+              crearUsuario();
             crearSalas();
             crearSesionesCrearSala();
+            $(location).attr('href',"http://localhost:3000/salas");
+            } else{
+              alert("Faltan rellenar campos")
+            }
+           
         });
 
         traerSalas().then((salas) => {
@@ -68,12 +75,17 @@
          
         });
 
-        $("#ingresarSala").click(function(e){   
-          //e.preventDefault();
+        $("#ingresarSala").click(function(e){ 
+          e.preventDefault()  
             sessionStorage.setItem("nick", $("#idNick").val());
             sessionStorage.setItem("sala", $('#ingresarSala').val($("#salasSelect option:selected").text())[0].value);
-            crearUsuario();    
-            crearSesionesIngresarSala();
+            if($("#idNick").val() != "" && $('#ingresarSala').val($("#salasSelect option:selected").text())[0].value != ""){
+              crearUsuario();    
+              crearSesionesIngresarSala();
+              $(location).attr('href',"http://localhost:3000/salas");
+            } else{
+              alert("Faltan rellenar campos")
+            }
         });
       });
  

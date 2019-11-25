@@ -1,6 +1,6 @@
 create table Usuarios (
 	nick varchar (50),
-    foto varchar(50),
+    foto LONGBLOB,
 	primary key (nick)
 );
 

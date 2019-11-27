@@ -11,11 +11,14 @@ begin
 	insert into salas values(CURDATE(), nombre, nick);
 end//
 
-
 delimiter //
-create procedure SesionesCrear(in nombre varchar(50), in nick varchar(50))
+CREATE PROCEDURE SesionesCrear(in nombre varchar(50), in nick varchar(50))
 begin
+	if not exists(select * from sesiones s where s.nickUsuario = nick and s.nombreSala = nombre and s.fechaHoraFin is null) then
+    begin
 	insert into sesiones(fechaHoraInicio, fechaHoraFin, nickUsuario, nombreSala) values(now(), null, nick, nombre);
+    end;
+    end if;
 end//
 
 

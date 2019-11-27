@@ -6,11 +6,11 @@ $(document).ready(function() {
         if($("#idNick").val() != "" && $("#ingresarNombre").val() != ""){
           crearUsuario();
           setTimeout(() => {
-            console.log("si")
+          
             crearSalas();
           }, 100);
           setTimeout(() => {
-            console.log("si")
+            
             crearSesionesCrearSala();
           }, 200);
         
@@ -100,7 +100,7 @@ return new Promise((resolve, reject) => {
 
   // crear salas en la base de datos
   function crearSalas(){
-    console.log(JSON.stringify({"nombre": $("#ingresarNombre").val(), "nick": $("#idNick").val()}))
+  
   let url = 'http://localhost:3001/api/salas';
   return new Promise((resolve, reject) => {
   //find the user to the api users
@@ -150,7 +150,7 @@ function crearSesionesCrearSala(){
 
 // crear sesiones en la base de datos
 function crearSesionesIngresarSala(){
-    console.log(JSON.stringify({"nombre": $('#ingresarSala').val($("#salasSelect option:selected").text())[0].value, "nick": $("#idNick").val()}))
+   
   let url = 'http://localhost:3001/api/sesiones/iniciar';
   return new Promise((resolve, reject) => {
   //find the user to the api users

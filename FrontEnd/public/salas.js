@@ -19,7 +19,7 @@ $(document).ready(function() {
 
       obtenerMensajes().then((mensajes) => {
       mensajes.forEach(element => {
-       $("#sala").append('<div style="background-color: gray; color: white"> <img style="border-radius: 50%;width: 40px; heigth:40px" src="http://localhost:3000/Captura.png">' + '<p>' + element.nick + ' dice:</p>' + '<p>' + element.texto + '</p>'  + '<p>' + element.fechaHora + '</p>' + '</div>')
+       $("#sala").append('<div style="background-color: gray; color: white"> <img style="border-radius: 50%;width: 40px; heigth:40px" src="http://localhost:3000/anonimo.png">' + '<p>' + element.nick + ' dice:</p>' + '<p>' + element.texto + '</p>'  + '<p>' + element.fechaHora + '</p>' + '</div>')
        });
 
       });
@@ -76,12 +76,11 @@ reject(error);
 }
 
 function obtenerMensajes(){
-console.log(JSON.stringify({"nombreSala": sessionStorage.getItem("sala")}))
+
 let nombreSala = sessionStorage.getItem("sala").replace(" ", "+");
-console.log(nombreSala)
-console.log(nombreSala.replace("+", " "))
+
 let url = `http://localhost:3001/api/mensajes/obtener/${nombreSala}`;
-console.log(url)
+
 return new Promise((resolve, reject) => {
 //find the user to the api users
 fetch(url,{
@@ -93,7 +92,6 @@ headers:{
 .then((response) => response.json())
 .then((responseJson) => {
 
-console.log(responseJson)
 resolve(responseJson);
 })
 .catch((error) => {
